@@ -1,151 +1,125 @@
 # SOS ClimaTech API 🌪️
 
-## Projeto: Cadastro de Pessoas Afetadas por Eventos Climáticos
+## Projeto: Cadastro e Gestão de Respostas a Eventos Climáticos
 
-Este projeto desenvolve uma API REST utilizando Java e Spring Boot para registrar pessoas impactadas por eventos climáticos extremos (enchentes, secas, etc.) e os próprios eventos. A API serve como backend para uma aplicação que poderia ser usada por entidades de resposta a emergências para gerenciar dados de cidadãos afetados.
+Bem-vindo à API SOS ClimaTech! Esta aplicação robusta, desenvolvida com **Java 17 e Spring Boot 3.x**, oferece uma solução centralizada para o **cadastro e gerenciamento de informações cruciais durante eventos climáticos extremos**, como enchentes, deslizamentos ou secas.
 
-Esta versão foi refatorada para seguir as boas práticas de arquitetura REST, princípios SOLID, e os requisitos técnicos especificados, incluindo persistência com JPA, validações, documentação Swagger e preparação para deploy em nuvem.
+O objetivo principal é fornecer uma ferramenta eficaz para **prefeituras, ONGs e equipes de defesa civil**, permitindo um registro ágil e organizado de:
 
----
+*   **Eventos Climáticos:** Detalhes sobre o tipo, localidade e data do desastre.
+*   **Pessoas Afetadas:** Informações essenciais dos cidadãos impactados.
+*   **Recursos Necessários:** Mapeamento de suprimentos e ajuda requerida.
+*   **Registros de Ajuda:** Controle da distribuição de recursos e assistência.
 
-## 🧩 Funcionalidades Implementadas
-
-*   **Eventos Climáticos:**
-    *   Cadastro (POST /api/eventos)
-    *   Listagem (GET /api/eventos)
-    *   Busca por ID (GET /api/eventos/{id})
-    *   Atualização (PUT /api/eventos/{id})
-    *   Remoção (DELETE /api/eventos/{id})
-*   **Pessoas Afetadas:**
-    *   Cadastro (POST /api/pessoas) - Associada a um evento existente.
-    *   Listagem (GET /api/pessoas)
-    *   Busca por ID (GET /api/pessoas/{id})
-    *   Atualização (PUT /api/pessoas/{id})
-    *   Remoção (DELETE /api/pessoas/{id})
-    *   **Atualização de Status de Assistência (Inovação):** (PATCH /api/pessoas/{id}/status?status=NOVO_STATUS)
-*   **Relacionamento:** Um evento pode ter várias pessoas afetadas (One-to-Many).
-*   **Validações:** Uso de Bean Validation para garantir a integridade dos dados de entrada.
-*   **Tratamento de Erros:** Respostas de erro padronizadas para recursos não encontrados e erros de validação.
-*   **Documentação:** API documentada automaticamente via Swagger/OpenAPI.
+Através de uma **API RESTful bem estruturada**, seguindo as melhores práticas de desenvolvimento e princípios SOLID, o SOS ClimaTech visa otimizar a resposta a emergências e facilitar a coordenação de ajuda humanitária.
 
 ---
 
-## ✨ Proposta Inovadora: Status de Assistência
+## 🎯 Funcionalidades Principais
 
-Para agregar valor e atender ao critério de inovação, foi implementado um campo `statusAssistência` na entidade `PessoaAfetada`. Este campo permite rastrear o progresso do atendimento a cada pessoa, utilizando os seguintes status:
+O SOS ClimaTech oferece um conjunto completo de operações CRUD (Criar, Ler, Atualizar, Deletar) para as seguintes entidades:
 
-*   `REGISTRADO`: Aguardando avaliação/contato.
-*   `EM_ASSISTENCIA`: Recebendo suporte.
-*   `ASSISTENCIA_CONCLUIDA`: Necessidades emergenciais atendidas.
-*   `NECESSITA_ACOMPANHAMENTO`: Requer suporte contínuo.
+*   **Eventos Climáticos:** `/api/eventos`
+*   **Pessoas Afetadas:** `/api/pessoas`
+*   **Localidades:** `/api/localidades`
+*   **Recursos:** `/api/recursos`
+*   **Registros de Ajuda:** `/api/registros-ajuda`
 
-Um endpoint `PATCH /api/pessoas/{id}/status` foi criado para permitir a atualização deste status pelas equipes de resposta.
+Além disso, funcionalidades chave incluem:
+
+*   **Relacionamentos Claros:** Mapeamento entre eventos, pessoas, localidades e recursos.
+*   **Validação de Dados:** Uso de Jakarta Bean Validation para garantir a consistência das informações.
+*   **Tratamento de Erros:** Exceções personalizadas e respostas padronizadas para uma melhor experiência do desenvolvedor.
+*   **Documentação Interativa:** Geração automática de documentação via **Swagger (OpenAPI)** para fácil exploração e teste dos endpoints.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## ✨ Proposta Inovadora: Status de Assistência Detalhado
+
+Como diferencial, a entidade `PessoaAfetada` incorpora um campo `statusAssistência`, permitindo um acompanhamento granular do ciclo de atendimento ao cidadão impactado. Os status possíveis são:
+
+*   `REGISTRADO`: Cadastro inicial, aguardando triagem.
+*   `EM_ASSISTENCIA`: Cidadão recebendo suporte ativo.
+*   `ASSISTENCIA_CONCLUIDA`: Necessidades emergenciais supridas.
+*   `NECESSITA_ACOMPANHAMENTO`: Indica a necessidade de suporte pós-emergencial.
+
+Este status pode ser atualizado através de um endpoint dedicado (`PUT /api/pessoas/{id}/status?status=NOVO_STATUS`), fornecendo às equipes de campo uma visão clara do progresso da assistência.
+
+---
+
+## 🛠️ Tecnologias e Ferramentas
 
 *   **Linguagem:** Java 17
-*   **Framework:** Spring Boot 3.x
+*   **Framework Principal:** Spring Boot 3.2.6
 *   **Persistência:** Spring Data JPA / Hibernate
-*   **Banco de Dados (Desenvolvimento):** H2 Database (em memória)
-*   **Banco de Dados (Produção):** Oracle (configurado para FIAP via variáveis de ambiente no Render)
+*   **Banco de Dados:** Oracle (Conectado à instância da FIAP)
 *   **Validação:** Jakarta Bean Validation
-*   **Documentação:** Springdoc OpenAPI (Swagger UI)
-*   **Build:** Apache Maven
-*   **Deploy:** Render (configurado para deploy como Web Service)
+*   **Documentação API:** Springdoc OpenAPI v2.5.0 (Swagger UI)
+*   **Build e Gerenciamento:** Apache Maven
+*   **Containerização (Opcional/Deploy):** Docker
+*   **Plataforma de Deploy:** Render
 
 ---
 
-## 📄 Documentação da API (Swagger)
+## 📄 Documentação da API (Swagger UI)
 
-A documentação completa da API, com todos os endpoints, modelos de dados e exemplos, está disponível via Swagger UI.
+A documentação interativa da API, essencial para entender e testar os endpoints, está disponível em:
 
-*   **Após iniciar a aplicação localmente:** [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
-*   **No ambiente de deploy (Render):** `{URL_DO_DEPLOY}/swagger-ui.html` (Substitua `{URL_DO_DEPLOY}` pela URL fornecida pelo Render após o deploy)
+*   **Ambiente de Deploy (Render):** `https://sos-climatech-api.onrender.com//swagger-ui.html`
+*   
+*   **Executando Localmente:** `http://localhost:8080/swagger-ui.html`
 
 ---
 
-## 🚀 Executando Localmente
+## 🚀 Executando o Projeto Localmente
 
 **Pré-requisitos:**
 
-*   JDK 17 ou superior instalado.
-*   Apache Maven instalado.
+*   JDK 17 ou superior instalado e configurado.
+*   Apache Maven instalado e configurado.
 
 **Passos:**
 
 1.  **Clone o repositório:**
     ```bash
-    git clone <URL_DO_REPOSITORIO>
-    cd sos-climatech_refactored
+    git clone https://github.com/enzodam/sos-climatech-api
+    cd sos-climatech-api-main
     ```
-2.  **Compile e execute a aplicação usando Maven:**
+2.  **Verifique as Credenciais:** Certifique-se de que o arquivo `src/main/resources/application.properties` contém as credenciais corretas para o banco de dados Oracle da FIAP (`spring.datasource.username` e `spring.datasource.password`).
+3.  **Compile e Execute com Maven:**
     ```bash
     mvn spring-boot:run
     ```
-    *   A aplicação iniciará usando o perfil `dev` por padrão, conectando-se ao banco H2 em memória.
-    *   A API estará acessível em `http://localhost:8080`.
-    *   O console do H2 estará acessível em `http://localhost:8080/h2-console` (JDBC URL: `jdbc:h2:mem:sosclimatechdb`, User: `sa`, Password: em branco).
+4.  **Acesso:** A API estará rodando em `http://localhost:8080`. Acesse a documentação Swagger em `http://localhost:8080/swagger-ui.html` para interagir com os endpoints.
 
 ---
 
-## ☁️ Deploy na Nuvem (Render) com Oracle FIAP
+## ☁️ Informações de Deploy
 
-A aplicação está configurada para deploy na plataforma Render como um "Web Service", utilizando o banco de dados Oracle da FIAP.
+Esta aplicação foi implantada com sucesso na plataforma **Render**, utilizando Docker e conectando-se ao banco de dados Oracle da FIAP.
 
-**Instruções para Deploy no Render:**
-
-1.  **Crie uma conta no Render:** Se ainda não tiver, crie uma conta em [https://render.com/](https://render.com/).
-2.  **Crie um novo "Web Service" no Render:** No dashboard, clique em "New +" e selecione "Web Service".
-3.  **Conecte seu repositório Git:** Escolha a opção para conectar seu repositório do GitHub, GitLab ou Bitbucket onde está o código do projeto.
-4.  **Configurações do Serviço:**
-    *   **Name:** Dê um nome para seu serviço (ex: `sos-climatech-api`).
-    *   **Region:** Escolha uma região (ex: `Frankfurt`).
-    *   **Branch:** Selecione a branch que deseja fazer deploy (ex: `main` ou `master`).
-    *   **Root Directory:** Deixe em branco se o `pom.xml` estiver na raiz do repositório.
-    *   **Runtime:** Selecione `Java` (O Render deve detectar o `pom.xml`).
-    *   **Build Command:** `mvn clean install -DskipTests` (O `-DskipTests` acelera o build).
-    *   **Start Command:** `java -jar target/sos-climatech-0.0.1-SNAPSHOT.jar` (Verifique se o nome do JAR gerado em `target/` corresponde. O perfil `prod` será ativado pelas variáveis de ambiente).
-    *   **Instance Type:** Escolha o plano desejado (o plano gratuito pode ser suficiente para testes).
-5.  **Variáveis de Ambiente (Environment Variables):** Esta é a parte crucial para conectar ao Oracle FIAP.
-    *   Clique em "Advanced" ou procure a seção "Environment".
-    *   Adicione as seguintes variáveis de ambiente **uma por uma**, clicando em "Add Environment Variable" para cada:
-        *   `SPRING_PROFILES_ACTIVE` = `prod`
-        *   `SPRING_DATASOURCE_URL` = `jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL`
-        *   `SPRING_DATASOURCE_USERNAME` = `SEU_RM_AQUI` (Substitua pelo seu RM da FIAP)
-        *   `SPRING_DATASOURCE_PASSWORD` = `SUA_SENHA_AQUI` (Substitua pela sua senha do Oracle FIAP)
-        *   `SPRING_DATASOURCE_DRIVER_CLASS_NAME` = `oracle.jdbc.OracleDriver`
-        *   `SPRING_JPA_HIBERNATE_DDL_AUTO` = `update` (Ou `validate` ou `none`. `update` tentará criar/atualizar tabelas automaticamente, use com cuidado em produção real).
-6.  **Deploy:** Clique em "Create Web Service". O Render irá clonar seu repositório, executar o comando de build e, se bem-sucedido, executar o comando de start.
-7.  **Acompanhe o Deploy:** Monitore os logs na aba "Logs" para verificar se a aplicação iniciou corretamente e se conectou ao banco Oracle.
-8.  **Acesse a Aplicação:** Após o deploy bem-sucedido, o Render fornecerá uma URL pública (ex: `https://seu-servico.onrender.com`). Acesse a documentação Swagger em `{URL_DO_DEPLOY}/swagger-ui.html` para testar.
-
-**Observação:** O deploy pode levar alguns minutos. Se ocorrerem erros, verifique os logs do Render cuidadosamente.
+*   **Link da Aplicação no Render:** `https://sos-climatech-api.onrender.com//swagger-ui.html`
 
 ---
 
 ## 🔗 Links Importantes
 
-*   **Repositório GitHub:** `[LINK_DO_SEU_REPOSITORIO_AQUI]` (Substitua pelo link real do seu repositório)
-*   **Deploy no Render:** `[LINK_DO_DEPLOY_NO_RENDER_AQUI]` (Substitua pelo link real após o deploy bem-sucedido)
+*   **Repositório GitHub:** `https://github.com/enzodam/sos-climatech-api`
 
 ---
 
-## 🎬 Vídeos de Entrega
+## 🎬 Vídeos de Entrega:
 
-Lembre-se que a entrega final requer dois vídeos:
-
-1.  **Vídeo Demonstração (máx. 10 minutos):** Apresente a solução completa, mostrando a API funcionando (use o Swagger UI da aplicação no Render), explique a arquitetura, as funcionalidades implementadas (incluindo a inovação do status) e como os requisitos técnicos foram atendidos.
-2.  **Vídeo Pitch (máx. 3 minutos):** Apresente a proposta de valor do projeto de forma concisa, focando no problema que ele resolve (gestão de dados em crises climáticas) e como a solução (a API) ajuda a mitigar os impactos.
+1.  **Vídeo Demonstração:** FALAFLLAFLAFLFLALTA ISSOSOSO
+2.  **Vídeo Pitch:** FALTA ISOSOSOSOSISO
 
 ---
 
-## Avaliação
+## 👨‍💻 Desenvolvedores
 
-Este projeto busca atender aos seguintes critérios de avaliação:
-
-*   **Cumprimento dos requisitos técnicos e boas práticas (70 pontos):** API REST, JPA, Relacionamentos, Bean Validation, Swagger, Deploy.
-*   **Viabilidade e Inovação (10 pontos):** Proposta de Status de Assistência.
-*   **Documentação e Apresentação (20 pontos):** Código fonte, links, instruções, vídeos.
+| Nome                          | RM      | GitHub |
+|-------------------------------|---------|--------|
+| Enzo Dias Alfaia Mendes       | 558438  | [@enzodam](https://github.com/enzodam) |
+| Matheus Henrique Germano Reis | 555861  | [@MatheusReis48](https://github.com/MatheusReis48) |
+| Luan Dantas dos Santos        | 559004  | [@lds2125](https://github.com/lds2125) |
 
