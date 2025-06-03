@@ -18,10 +18,6 @@ public class Localidade {
     private String cidade;
     @Column(name = "SG_ESTADO", length = 2)
     private String estado;
-    @Column(name = "NR_LATITUDE")
-    private Double latitude;
-    @Column(name = "NR_LONGITUDE")
-    private Double longitude;
     @OneToMany(mappedBy = "localidade")
     private List<EventoClimatico> eventos;
 }
