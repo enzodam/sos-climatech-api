@@ -94,12 +94,14 @@ A documentação interativa da API, essencial para entender e testar os endpoint
 
 ---
 
-## ☁️ Informações de Deploy
+## 💻 Usando a API no Render (Online)
 
-Esta aplicação foi implantada com sucesso na plataforma **Render**, utilizando Docker e conectando-se ao banco de dados Oracle da FIAP.
+Você pode interagir e testar a API diretamente no ambiente online do Render:
 
-*   **Link da Aplicação no Render:** `https://sos-climatech-api.onrender.com//swagger-ui.html`
-
+1.  **Acesse o Swagger UI:** A forma mais fácil de usar a API é através da documentação interativa Swagger. Abra o seguinte link no seu navegador, substituindo o placeholder pela URL real da sua aplicação no Render:
+    ```
+    https://sos-climatech-api.onrender.com//swagger-ui.html
+    ```
 ---
 
 ## 🔗 Links Importantes
