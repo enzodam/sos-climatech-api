@@ -39,8 +39,6 @@ public class LocalidadeService {
                 .orElseThrow(() -> new ResourceNotFoundException("Localidade não encontrada com ID: " + id));
         entity.setCidade(dto.getCidade());
         entity.setEstado(dto.getEstado());
-        entity.setLatitude(dto.getLatitude());
-        entity.setLongitude(dto.getLongitude());
         entity = repository.save(entity);
         return toDTO(entity);
     }
@@ -56,8 +54,6 @@ public class LocalidadeService {
                 entity.getId(),
                 entity.getCidade(),
                 entity.getEstado(),
-                entity.getLatitude(),
-                entity.getLongitude()
         );
     }
     private Localidade toEntity(LocalidadeDTO dto) {
@@ -65,8 +61,6 @@ public class LocalidadeService {
         entity.setId(dto.getId()); 
         entity.setCidade(dto.getCidade());
         entity.setEstado(dto.getEstado());
-        entity.setLatitude(dto.getLatitude());
-        entity.setLongitude(dto.getLongitude());
         return entity;
     }
 }
