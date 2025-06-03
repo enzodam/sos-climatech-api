@@ -15,6 +15,4 @@ public class LocalidadeDTO {
     @NotBlank
     @Size(min = 2, max = 2)
     private String estado;
-    private Double latitude;
-    private Double longitude;
 }
