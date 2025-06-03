@@ -96,3 +96,4 @@ public class RegistroAjudaController {
         return ResponseEntity.ok(response);
     }
 }
+
