@@ -97,3 +97,4 @@ public class EventoClimaticoController {
         return ResponseEntity.ok(response);
     }
 }
+
