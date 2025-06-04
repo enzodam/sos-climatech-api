@@ -53,7 +53,7 @@ public class LocalidadeService {
         return new LocalidadeDTO(
                 entity.getId(),
                 entity.getCidade(),
-                entity.getEstado(),
+                entity.getEstado()
         );
     }
     private Localidade toEntity(LocalidadeDTO dto) {
