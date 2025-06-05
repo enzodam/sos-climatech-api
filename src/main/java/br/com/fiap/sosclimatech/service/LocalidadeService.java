@@ -58,7 +58,6 @@ public class LocalidadeService {
     }
     private Localidade toEntity(LocalidadeDTO dto) {
         Localidade entity = new Localidade();
-        entity.setId(dto.getId()); 
         entity.setCidade(dto.getCidade());
         entity.setEstado(dto.getEstado());
         return entity;
