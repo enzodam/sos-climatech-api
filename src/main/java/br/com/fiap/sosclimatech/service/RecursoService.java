@@ -72,7 +72,6 @@ public class RecursoService {
     }
     private Recurso toEntity(RecursoDTO dto) {
         Recurso entity = new Recurso();
-        entity.setId(dto.getId()); 
         entity.setNome(dto.getNome());
         entity.setTipo(dto.getTipo());
         entity.setQuantidade(dto.getQuantidade());
