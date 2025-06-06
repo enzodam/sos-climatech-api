@@ -51,7 +51,6 @@ public class RegistroAjudaService {
         RegistroAjuda registro = new RegistroAjuda();
         registro.setPessoa(pessoa);
         registro.setRecurso(recurso);
-        // Quantidade removida
         registro.setDataRegistro(LocalDateTime.now());
         registro.setEntregue(true);
         registro = registroRepository.save(registro);
