@@ -1,3 +1,4 @@
+
 package br.com.fiap.sosclimatech.service;
 
 import br.com.fiap.sosclimatech.dto.RegistroAjudaDTO;
@@ -50,10 +51,9 @@ public class RegistroAjudaService {
         RegistroAjuda registro = new RegistroAjuda();
         registro.setPessoa(pessoa);
         registro.setRecurso(recurso);
-        registro.setQuantidade(dto.getQuantidade());
+        // Quantidade removida
         registro.setDataRegistro(LocalDateTime.now());
-        registro.setEntregue(false);
-
+        registro.setEntregue(true);
         registro = registroRepository.save(registro);
         return toDTO(registro);
     }
@@ -80,10 +80,10 @@ public class RegistroAjudaService {
                 entity.getId(),
                 entity.getPessoa().getId(),
                 entity.getRecurso().getId(),
-                entity.getQuantidade(),
                 entity.getDataRegistro(),
                 entity.isEntregue()
         );
     }
 }
+
 
