@@ -50,20 +50,19 @@ public class RegistroAjudaService {
         RegistroAjuda registro = new RegistroAjuda();
         registro.setPessoa(pessoa);
         registro.setRecurso(recurso);
-        registro.setQuantidade(dto.getQuantidade()); // Quantidade re-adicionada
+        registro.setQuantidade(dto.getQuantidade());
         registro.setDataRegistro(LocalDateTime.now());
-        registro.setEntregue(true); // Definido como true automaticamente
+        registro.setEntregue(true);
 
         registro = registroRepository.save(registro);
         return toDTO(registro);
     }
 
-    // Este método agora marcará como NÃO ENTREGUE
     @Transactional
     public RegistroAjudaDTO marcarComoNaoEntregue(Long id) {
         RegistroAjuda registro = registroRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Registro de ajuda não encontrado com ID: " + id));
-        registro.setEntregue(false); // Marca como não entregue
+        registro.setEntregue(false);
         registro = registroRepository.save(registro);
         return toDTO(registro);
     }
@@ -81,7 +80,7 @@ public class RegistroAjudaService {
                 entity.getId(),
                 entity.getPessoa().getId(),
                 entity.getRecurso().getId(),
-                entity.getQuantidade(), // Quantidade re-adicionada
+                entity.getQuantidade(),
                 entity.getDataRegistro(),
                 entity.isEntregue()
         );
