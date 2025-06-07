@@ -1,4 +1,3 @@
-
 package br.com.fiap.sosclimatech.service;
 
 import br.com.fiap.sosclimatech.dto.RegistroAjudaDTO;
@@ -51,17 +50,20 @@ public class RegistroAjudaService {
         RegistroAjuda registro = new RegistroAjuda();
         registro.setPessoa(pessoa);
         registro.setRecurso(recurso);
+        registro.setQuantidade(dto.getQuantidade()); // Quantidade re-adicionada
         registro.setDataRegistro(LocalDateTime.now());
-        registro.setEntregue(true);
+        registro.setEntregue(true); // Definido como true automaticamente
+
         registro = registroRepository.save(registro);
         return toDTO(registro);
     }
 
+    // Este método agora marcará como NÃO ENTREGUE
     @Transactional
-    public RegistroAjudaDTO marcarComoEntregue(Long id) {
+    public RegistroAjudaDTO marcarComoNaoEntregue(Long id) {
         RegistroAjuda registro = registroRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Registro de ajuda não encontrado com ID: " + id));
-        registro.setEntregue(true);
+        registro.setEntregue(false); // Marca como não entregue
         registro = registroRepository.save(registro);
         return toDTO(registro);
     }
@@ -79,10 +81,13 @@ public class RegistroAjudaService {
                 entity.getId(),
                 entity.getPessoa().getId(),
                 entity.getRecurso().getId(),
+                entity.getQuantidade(), // Quantidade re-adicionada
                 entity.getDataRegistro(),
                 entity.isEntregue()
         );
     }
 }
+
+
 
 
