@@ -1,5 +1,6 @@
 package br.com.fiap.sosclimatech.model;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -28,6 +29,11 @@ public class RegistroAjuda {
     @JoinColumn(name = "ID_RECURSO", nullable = false) 
     private Recurso recurso;
 
+    @NotNull(message = "Quantidade não pode ser nula")
+    @Min(value = 1, message = "Quantidade deve ser pelo menos 1")
+    @Column(name = "NR_QUANTIDADE", nullable = false)
+    private Integer quantidade;
+
     @Column(name = "DT_REGISTRO", nullable = false) 
     private LocalDateTime dataRegistro;
 
@@ -35,4 +41,5 @@ public class RegistroAjuda {
     private boolean entregue = false; 
 
 }
+
 
