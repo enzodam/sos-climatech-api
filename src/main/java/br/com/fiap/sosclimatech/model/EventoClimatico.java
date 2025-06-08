@@ -1,6 +1,5 @@
 package br.com.fiap.sosclimatech.model;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -25,7 +24,6 @@ public class EventoClimatico {
     @Column(name = "TP_EVENTO", nullable = false, length = 50)
     private String tipo;
     @NotNull(message = "Data de início não pode ser nula")
-    @FutureOrPresent(message = "Data de início deve ser no presente ou futuro")
     @Column(name = "DT_INICIO", nullable = false)
     private LocalDate dataInicio;
     @Size(max = 300, message = "Descrição do impacto deve ter no máximo 300 caracteres")
