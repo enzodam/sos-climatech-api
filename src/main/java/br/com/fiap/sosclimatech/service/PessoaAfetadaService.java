@@ -69,7 +69,7 @@ public class PessoaAfetadaService {
     private void mapDtoToEntity(PessoaAfetadaRequestDTO dto, PessoaAfetada entity, EventoClimatico evento) {
         entity.setNome(dto.nome());
         entity.setCpf(dto.cpf()); 
-        entity.setEndereco(dto.endereco());
+        entity.setCidade(dto.cidade());
         entity.setEvento(evento);
     }
 }
