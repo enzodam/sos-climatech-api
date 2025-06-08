@@ -1,18 +1,25 @@
 package br.com.fiap.sosclimatech.dto;
-import jakarta.validation.constraints.FutureOrPresent;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
-public record EventoClimaticoRequestDTO(
-        @NotBlank(message = "Tipo do evento não pode ser vazio")
-        @Size(max = 50, message = "Tipo do evento deve ter no máximo 50 caracteres")
-        String tipo,
-        @NotNull(message = "Data de início não pode ser nula")
-        @FutureOrPresent(message = "Data de início deve ser no presente ou futuro")
-        LocalDate dataInicio,
-        @NotNull(message = "ID da Localidade não pode ser nulo")
-        Long localidadeId,
-        @Size(max = 300, message = "Descrição do impacto deve ter no máximo 300 caracteres")
-        String impacto
-) {}
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class EventoClimaticoRequestDTO {
+        private Long id;
+        @NotBlank(message = "Tipo do evento é obrigatório")
+        private String tipo;
+        @NotBlank(message = "Descrição é obrigatória")
+        private String descricao;
+        @NotNull(message = "Data de início é obrigatória")
+        private LocalDate dataInicio;
+        @NotNull(message = "Localidade é obrigatória")
+        private Long localidadeId;
+        private String impacto;
+}
