@@ -13,8 +13,8 @@ public class PessoaAfetadaDTO {
     private String nome;
     @Pattern(regexp = "\\d{11}", message = "CPF deve conter 11 dígitos")
     private String cpf;
-    @NotBlank(message = "Endereço é obrigatório")
-    private String endereco;
+    @NotBlank(message = "Cidade é obrigatório")
+    private String cidade;
     private boolean prioridade;
     private Long eventoId;
 }
