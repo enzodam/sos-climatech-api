@@ -5,7 +5,7 @@ public record PessoaAfetadaResponseDTO(
         Long id,
         String nome,
         String cpf,
-        String endereco,
+        String cidade,
         StatusAssistencia statusAssistencia,
         Long eventoId, 
         String eventoTipo 
@@ -15,7 +15,7 @@ public record PessoaAfetadaResponseDTO(
                 pessoa.getId(),
                 pessoa.getNome(),
                 pessoa.getCpf(),
-                pessoa.getEndereco(),
+                pessoa.getCidade(),
                 pessoa.getStatusAssistencia(),
                 pessoa.getEvento() != null ? pessoa.getEvento().getId() : null,
                 pessoa.getEvento() != null ? pessoa.getEvento().getTipo() : null
