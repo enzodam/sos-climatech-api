@@ -102,8 +102,8 @@ Você pode interagir e testar a API diretamente no ambiente online do Render:
 
 ## 🎬 Vídeos de Entrega:
 
-1.  **Vídeo Demonstração:** FALAFLLAFLAFLFLALTA ISSOSOSO
-2.  **Vídeo Pitch:** FALTA ISOSOSOSOSISO
+1.  **Vídeo Demonstração:** [https://youtu.be/7Qf54tC13A4]
+2.  **Vídeo Pitch:** [https://www.youtube.com/watch?v=-nRjJIM7DKc]
 
 ---
 
